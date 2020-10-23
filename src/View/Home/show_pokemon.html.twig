@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Pokemons #{{pokemon.id}}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card">
+                    <img src="{{pokemon.img}}" class="card-img-top" alt="">
+                    <div class="card-body text-center">
+                        <form method="POST">
+                            <h5 class="card-title">{{pokemon.name}}</h5>
+                            <p>{{pokemon.content}}</p>
+                            <p>{{pokemon.price}}€</p>
+                            <input type="text" class="d-none" name="add_pokemon" value="{{pokemon.id}}">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-cart-arrow-down"></i></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

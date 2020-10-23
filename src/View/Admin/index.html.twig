@@ -1,0 +1,74 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Admin - Index{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="jumbotron my-5 bg-dark text-white">
+        <h2 class="display-4">Commandes :</h2>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Adresse</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for command in commands %}
+                <tr>
+                    <th scope="row">{{command.id}}</th>
+                    <td>{{command.name}}</td>
+                    <td>{{command.address}}</td>
+                    <td>{{command.total}} $</td>
+                    <td>{{command.created_at|date('Y-m-d')}}</td>
+                    <td>
+                        <a href="/admin/deleteCommand/{{ command.id }}"
+                        class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="jumbotron my-5 bg-dark text-white">
+        <h2 class="display-4">Liste des Pokemons en vente :</h2>
+        <div class="text-right my-3">
+            <a href="/admin/editPokemon/" class="btn btn-sm btn-primary">Ajouter <i class="fas fa-plus-circle"></i></a>
+        </div>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pokemon in pokemons %}
+                <tr>
+                    <th scope="row">{{pokemon.id}}</th>
+                    <td>{{pokemon.name}}</td>
+                    <td>{{pokemon.content}}</td>
+                    <td><img src="{{pokemon.img}}" alt="{{pokemon.img}}" class="img-fluid" width="150px"></td>
+                    <td>{{pokemon.price}} €</td>
+                    <td>
+                        <a href="/home/showPokemon/{{ pokemon.id }}" class="btn btn-sm btn-success my-2"><i
+                                class="fas fa-eye"></i></a>
+                        <a href="/admin/editPokemon/{{ pokemon.id }}" class="btn btn-sm btn-warning my-2"><i
+                                class="fas fa-edit"></i></a>
+                        <a href="/admin/deletePokemon/{{ pokemon.id }}"
+                            class="btn btn-sm btn-danger my-2"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

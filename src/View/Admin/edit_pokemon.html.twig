@@ -1,0 +1,47 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Admin - Edit Pokemon #{{pokemon.id}}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        {% if pokemon.id is not empty %}
+        <h2 class="display-4">Mettre à jour {{pokemon.name}}</h2>
+        {% else %}
+        <h2 class="display-4">Créer un nouveau Pokemon</h2>
+        {% endif %}
+        <hr>
+        <div class="col-12">
+            {% if errorForm is not null %}
+            <div class="alert alert-danger" role="alert">
+                {{errorForm}}
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-12">
+            <form method="POST">
+                <input type="text" class="d-none" id="id" name="id" value="{{pokemon.id}}">
+                <div class="form-group">
+                    <label for="Name">Nom *</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{pokemon.name}}">
+                </div>
+                <div class="form-group">
+                    <label for="img">Image *</label>
+                    <input type="text" class="form-control" id="img" name="img" value="{{pokemon.img}}">
+                </div>
+                <div class="form-group">
+                    <label for="content">Description *  </label>
+                    <textarea id="content" name="content" rows="6" cols="40">{{pokemon.content}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="content">Prix *</label>
+                    <textarea id="price" name="price" rows="1" cols="4">{{pokemon.price}}</textarea>
+                </div>
+                <div class="small">* Champs obligatoires</div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Valider</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

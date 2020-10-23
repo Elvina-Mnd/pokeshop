@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Commande validée{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Votre commande est validée</h1>
+        <hr class="my-4">
+        <a href="/">Retourner au Pokeshop</a>
+        {{dump(session)}}
+        {% if session.transaction %}
+            <p>{{session.transaction.stripe}}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
