@@ -93,10 +93,10 @@ class CartController extends AbstractController
                 'statement_descriptor' => 'Custom descriptor',
             ]);
             $transacUrl = $charge->receipt_url;
-            session_destroy();
-            $_SESSION['transaction'] = [
-                'stripe' => $transacUrl
-            ];
+            unset($_SESSION['cart']);
+            unset($_SESSION['count']);
+            $_SESSION['transaction'] = $transacUrl;
+
             header('Location:/home/success');
         } catch (\Stripe\Exception\ApiErrorException $e) {
             $e->getError(); 

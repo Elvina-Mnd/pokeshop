@@ -18,3 +18,5 @@ define('APP_VIEW_PATH', __DIR__ . '/../src/View/');
 define('APP_CACHE_PATH', __DIR__ . '/../temp/cache/');
 
 define('HOME_PAGE', 'home/index');
+
+define('API_KEY', 'sk_test_51HfMzwEhwBrDtDMxSodnNj3QF5ikL8SxALjZjUbtJxuBVRf5vx2rvy9SacNM17A6zqN8zC40tayV0WlOwqBG4Mx500qaLBR9D2');

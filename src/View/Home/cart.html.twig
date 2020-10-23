@@ -78,3 +78,32 @@
     {% endif %}
 </div>
 {% endblock %}
+
+{% block javascript %}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    var stripe = Stripe('pk_test_51HfMzwEhwBrDtDMxluLzgB3z41aXwYVdbrsRRieRUlOTVot7cw0WQPCZ3Rqsj68dDsVnecVvNkPSWPudH8xUTPjL00FGhOgRUj');
+    let form = document.getElementById('card');
+    let inputToken = document.getElementById('token')
+    let submitButton = document.getElementById('submit')
+    var elements = stripe.elements();
+
+    var cardElement = elements.create('card');
+    cardElement.mount(form);
+    cardElement.on('change', (event) => {
+        var displayError = document.getElementById('card-errors');
+        if (event.complete) {
+            stripe.createToken(cardElement).then(result => {
+                if (result.token) {
+                    inputToken.value = result.token.id;
+                    submitButton.classList.remove('disabled');
+                } else if (result.error) {
+                    alert(result.error)
+                }
+            })
+        } else if (event.error) {
+            displayError.textContent = event.error.message;
+        }
+    });
+</script>
+{% endblock %}
